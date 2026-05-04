@@ -1,0 +1,24 @@
+expname = razorback_test
+basedir = ./logs
+datadir = ./data/razorback
+dataset_type = llff
+
+# --- Dataset Handling ---
+factor = 4           # Set to 4 to match the factor you just passed to imgs2poses.py
+llffhold = 8
+
+# --- System RAM Crash Fix ---
+no_batching = True   # Prevents Linux from killing the process during initialization
+
+# --- Hardware Optimizations ---
+N_rand = 8192        # Scaled up to fully utilize your high-performance GPU
+N_samples = 64
+N_importance = 128   # Increased for better fine-network detail
+
+# --- Model Settings ---
+use_viewdirs = True
+raw_noise_std = 1e0
+
+# --- 360-Degree Scene Flags (Read note below) ---
+no_ndc = True
+spherify = True
