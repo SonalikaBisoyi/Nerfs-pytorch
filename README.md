@@ -9,6 +9,16 @@ This repo extends our [PyTorch NeRF port](https://github.com/SonalikaBisoyi/Nerf
 
 ---
 
+## Our Result — Custom Video (University of Arkansas Razorback)
+
+This is a novel view synthesis result trained on our own recorded video, processed through the full custom pipeline:
+
+![Razorback NeRF Result](https://github.com/SonalikaBisoyi/Nerfs-pytorch/raw/main/razorback_test_spiral_200000_rgb.gif)
+
+> Trained for 200k iterations on an RTX 5090 using footage captured with a handheld camera, preprocessed with `video2imgs.py` and `imgs2poses.py`.
+
+---
+
 ## Pipeline Overview
 
 ```
@@ -175,6 +185,20 @@ Output video is saved to `logs/my_scene_test/my_scene_test_spiral_??????_rgb.mp4
 | factor=1 (full res) | 200k | ~12–16 hours |
 
 Start with `factor=8` to validate your scene, then retrain at higher resolution.
+
+---
+
+## VRAM Tuning
+
+The RTX 5090 has 32GB — you can push well beyond the conservative defaults:
+
+```bash
+# Conservative defaults (safe on any GPU with ≥8GB):
+--chunk 32768 --netchunk 65536 --N_rand 1024
+
+# RTX 5090 recommended (much faster):
+--chunk 131072 --netchunk 262144 --N_rand 4096
+```
 
 ---
 
